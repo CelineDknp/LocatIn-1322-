@@ -5,18 +5,21 @@
       <h1>Table <%= table %></h1>
       <table>
         <thead>
-          <th>Numéro de réservation</th>
+          <th></th>
+          <th>Numéro</th>
           <th>Numéro de client</th>
           <th>Etat</th>
           <th>Date</th>
           <th>Voiture concernée</th>
           <th>Type de location</th>
           <th>Date d'annulation</th>
-          <th>Référence de nouvelle réservation</th>
+          <th>Référence nouvelle réservation</th>
         </thead>
         <tbody>
           <%_ data.forEach(function(el){_%>
             <tr>
+              <td><a href='supprimerReservation/<%=el.ID%>' title="Supprimer cette ligne"><img src="/images/supp.png" alt="suppression"></a>
+                <a href='editerReservation/<%=el.ID%>' title="Éditer cette ligne"><img src="/images/edit.png" alt="edition"></a></td>
               <td><%=el.ID %></td>
               <td><%=el.NClient %></td>
               <td><%=el.Etat %></td>

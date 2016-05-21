@@ -161,7 +161,7 @@ app.post('/modeles', function(req, res) {
 												[codeF, libelleF, marqueF, typeF, puissanceF, tariF]);
     db.run("END");
     console.log("Modèle de voiture ajouté avec succès");
-    res.redirect('/');
+    res.redirect('/voirDB/modeles');
 });
 
 app.get('/reservation', function(req, res) {

@@ -310,6 +310,44 @@ app.get('/modeles', function(req, res) {
 		});
 });
 
+
+app.get('/supprimerModele/:id', function(req, res) {
+	var condition = req.params.id;
+
+	db.run("BEGIN TRANSACTION");
+	db.run("DELETE FROM ModeleVoiture WHERE Code = ?", [condition]);
+	db.run("END");
+
+	res.redirect("/voirDB/modeles");
+		  	
+});
+
+app.get('/editerModele/:id', function(req, res) {
+	var condition = req.params.id;
+
+	db.all("SELECT * FROM ModeleVoiture WHERE Code = '"+condition+"'", function(err, row) {
+		db.all("SELECT Code FROM classeTarif", function(err, row2) {
+			res.render('ajoutModele', {
+				titre:'ajout',
+				tarif:row2,
+				data:row
+	   		});
+		});
+	});
+});
+
+app.post('/editerModele/:id', function(req, res) {
+	var condition = req.params.id;
+
+	db.run("BEGIN TRANSACTION");
+	db.run("UPDATE ModeleVoiture SET Code = '"+req.body.code+ "' , Libelle = '"+req.body.libelle+
+								"' , Marque = '"+req.body.marque+"' , Puissance = '"+req.body.puissance+
+								"' , Type = '"+req.body.type+"' , CodeTarif = '"+req.body.codeT+
+								"' WHERE Code = '"+condition+"'");
+	db.run("END");
+	res.redirect("/voirDB/modeles");
+});
+
 app.get('/reservation', function(req, res) {
 		db.all("SELECT * FROM reservation", function(err, row) {	
 			res.render('tableReserv', {
@@ -318,6 +356,52 @@ app.get('/reservation', function(req, res) {
 	    		data:row
 	    	})
 		});
+});
+
+app.get('/supprimerReservation/:id', function(req, res) {
+	var condition = req.params.id;
+
+	db.run("BEGIN TRANSACTION");
+	db.run("DELETE FROM Reservation WHERE ID = ?", [condition]);
+	db.run("END");
+
+	res.redirect("/voirDB/reservation");
+		  	
+});
+
+app.get('/editerReservation/:id', function(req, res) {
+	var condition = req.params.id;
+
+	db.all("SELECT * FROM Reservation WHERE ID = '"+condition+"'", function(err, row) {
+		db.all("SELECT NClient FROM Client", function(err, row2) {
+			db.all("SELECT NVoiture FROM Voiture WHERE Statut='libre'", function(err, row3) {
+				db.all("SELECT * FROM Reservation", function(err, row4) {
+					res.render('editReservation', {
+						titre:'ajout',
+						client:row2,
+						voiture:row3,
+						allReserv:row4,
+						data:row
+	   				});
+				});
+			});
+		});
+	});
+});
+
+app.post('/editerReservation/:id', function(req, res) {
+	var condition = req.params.id;
+	var nRes = req.body.nReserv;
+	if(nRes=='-'){
+		nRes = null;
+	}
+	db.run("BEGIN TRANSACTION");
+	db.run("UPDATE Reservation SET NClient = '"+req.body.client+ "' , Etat = '"+req.body.etat+
+								"' , Date = '"+req.body.date+"' , Voiture = '"+req.body.voiture+
+								"' , TypeLoc = '"+req.body.type+"' , DateSuppression = '"+req.body.dateS+
+								"' , NouvelleReserv = "+nRes+" WHERE ID = '"+condition+"'");
+	db.run("END");
+	res.redirect("/voirDB/reservation");
 });
 
 app.get('/contratLoc', function(req, res) {

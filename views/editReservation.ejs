@@ -1,0 +1,62 @@
+<% include ./header %>
+<div class="container-fluid text-center">    
+    <div class="col-sm-8 text-left"> 
+      <h1>Editer réservation</h1>
+      <form method="post" action="#" >
+       <p>
+          <label>Numéro du client :</label>
+          <select name="client" id="client" required>
+            <%_ client.forEach(function(el){_%>
+                <option><%= el.NClient %></option>
+            <%_ }); _%>
+          </select>
+      </p>
+      <p>
+          <label>Date :</label>
+          <input type="text" value="<%= data[0].Date %>" name="date" id="date" required>
+      </p>
+      <p>
+          <label>Numéro de la voiture :</label>
+          <select name="voiture" id="voiture" required>
+            <%_ voiture.forEach(function(el){_%>
+                <option><%= el.NVoiture %></option>
+            <%_ }); _%>
+          </select>
+      </p>
+      <p>
+          <label>Type de réservation :</label>
+          <select name="type" id="type" required>
+            <option>jour</option>
+            <option>semaine</option>
+            <option>weekEnd</option>
+          </select>
+      </p>
+      <p>
+          <label>Etat de la réservation :</label>
+          <select name="etat" id="etat" required>
+            <option>Effectif</option>
+            <option>Annulée</option>
+            <option>Terminée</option>
+            <option>Supprimée</option>
+          </select>
+      </p>
+      <p>
+          <label>Date de suppression :</label>
+          <input type="text" value="<%= data[0].DateSuppression %>" name="dateS" id="dateS">
+      </p>
+      <p>
+          <label>Numéro de la nouvelle réservation :</label>
+          <select name="nReserv" id="nReserv">
+          <option>-</option>
+            <%_ allReserv.forEach(function(el){_%>
+                <option><%= el.ID %></option>
+            <%_ }); _%>
+          </select>
+      </p>
+      <p>
+          <button type="submit" class="btn-new" name="val">Editer</button>
+      </p>
+  </form>
+    </div>
+</div>
+<% include ./footer %>
