@@ -6,6 +6,12 @@ var sqlite3 = require("sqlite3").verbose();
 var file = "LINGE1322.sqlite";
 var db = new sqlite3.Database(file);
 
+app.get('/', function(req, res) {	
+			res.render('ajoutDB', {
+	    		titre:'voir',
+	    	}) 	
+});
+
 app.get('/assureur', function(req, res) {
 	res.render('ajoutAssur', {
     	titre:'ajout',
