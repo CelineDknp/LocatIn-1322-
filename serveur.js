@@ -53,10 +53,6 @@ function onError(error) {
   }
 }
 
-/**
- * Event listener for HTTP server "listening" event.
- */
-
 function onListening() {
   var addr = server.address();
   var bind = typeof addr === 'string'
@@ -65,22 +61,10 @@ function onListening() {
   debug('Listening on ' + bind);
 }
 
-/**
- * Get port from environment and store in Express.
- */
-
 var port = normalizePort(process.env.PORT || '8080');
 app.set('port', port);
 
-/**
- * Create HTTP server.
- */
-
 var server = http.createServer(app);
-
-/**
- * Listen on provided port, on all network interfaces.
- */
 
 server.listen(port);
 server.on('error', onError);
@@ -90,6 +74,7 @@ server.on('listening', onListening);
 app.use(express.static(path.join(__dirname, '/public')));
 app.use('public/style', express.static(path.join(__dirname, 'public/style')));
 app.use('public/images', express.static(path.join(__dirname, 'public/images')));
+app.use('public/vendor', express.static(path.join(__dirname, 'public/vendor')));
 
 
 //Gérer les sessions
