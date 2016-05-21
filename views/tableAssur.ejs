@@ -5,6 +5,7 @@
       <h1>Table <%= table %></h1>
       <table>
         <thead>
+          <th></th>
           <th>Nom</th>
           <th>Adresse</th>
           <th>Telephone</th>
@@ -13,6 +14,8 @@
         <tbody>
           <%_ data.forEach(function(el){_%>
             <tr>
+              <td><a href='supprimerAssureur/<%=el.Nom%>,<%=el.Adresse%>' title="Supprimer cette ligne"><img src="/images/supp.png" alt="suppression"></a>
+                <a href='editerAssureur/<%=el.Nom%>,<%=el.Adresse%>' title="Éditer cette ligne"><img src="/images/edit.png" alt="edition"></a></td>
               <td><%=el.Nom %></td>
               <td><%=el.Adresse %></td>
               <td><%=el.Telephone %></td>

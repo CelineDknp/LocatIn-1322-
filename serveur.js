@@ -88,7 +88,8 @@ server.on('listening', onListening);
 
 //Les chemins où trouver les fichiers statiques
 app.use(express.static(path.join(__dirname, '/public')));
-app.use('public/styles', express.static(path.join(__dirname, 'public/style')));
+app.use('public/style', express.static(path.join(__dirname, 'public/style')));
+app.use('public/images', express.static(path.join(__dirname, 'public/images')));
 
 
 //Gérer les sessions

@@ -2,15 +2,20 @@
 
 <div class="container-fluid text-center">    
     <div class="col-sm-8 text-left"> 
+      <%_ if(data=="null") {_%>
       <h1>Nouveau contrat d'assurance</h1>
+      <%_}_%>
+      <%_ if(data!="null") {_%>
+      <h1>Éditer contrat d'assurance</h1>
+      <%_}_%>
       <form method="post" action="#" >
       <p>
           <label>Type de contrat :</label>
-          <input type="text" name="type" id="type" required>
+          <input type="text" value="<%= data[0].Type %>" name="type" id="type" required>
       </p>
       <p>
           <label>Nom de l'assureur :</label>
-          <select name="nom" id="nom" required>
+          <select name="nom" value="<%= data[0].NomAssureur %>" id="nom" required>
             <%_ assureur.forEach(function(el){_%>
                 <option><%= el.Nom %></option>
             <%_ }); _%>
@@ -18,7 +23,7 @@
       </p>
       <p>
           <label>Adresse de l'assureur :</label>
-          <select name="adresse" id="adresse" required>
+          <select name="adresse" value="<%= data[0].AdresseAssureur %>" id="adresse" required>
             <%_ assureur.forEach(function(el){_%>
                 <option><%= el.Adresse %></option>
             <%_ }); _%>

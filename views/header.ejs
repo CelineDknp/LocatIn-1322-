@@ -4,8 +4,8 @@
   <title>LocatIn</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="/style/style.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/style/style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
@@ -60,7 +60,7 @@
                         <li><a href="/ajoutDB/factures">Nouvelle facture</a></li>
                     </ul>
                 </li>
-        <li <%_ if(titre=='contrat') {_%> class='active' <%_}_%>><a href="/contratModele">Contrat des assureurs</a></li>
+        <li <%_ if(titre=='contrat') {_%> class='active' <%_}_%>><a href="/contratModele">Contrats des assureurs</a></li>
         <li <%_ if(titre=='factures') {_%> class='active' <%_}_%>><a href="/factures">Détail des factures</a></li>
         <li <%_ if(titre=='dedommagement') {_%> class='active' <%_}_%>><a href="/dedommagement">Remboursements</a></li>
         <li <%_ if(titre=='voitures') {_%> class='active' <%_}_%>><a href="/voitures">Détail des voitures</a></li>

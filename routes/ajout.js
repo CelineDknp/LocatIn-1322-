@@ -6,15 +6,10 @@ var sqlite3 = require("sqlite3").verbose();
 var file = "LINGE1322.sqlite";
 var db = new sqlite3.Database(file);
 
-app.get('/', function(req, res) {
-	res.render('ajoutDB', {
-		titre:'ajout'
-	});
-});
-
 app.get('/assureur', function(req, res) {
 	res.render('ajoutAssur', {
-    	titre:'ajout'
+    	titre:'ajout',
+    	data:"null"
     });
 });
 
@@ -24,17 +19,18 @@ app.post('/assureur', function(req, res) {
 	var telephoneF = req.body.tel;
 	var faxF = req.body.fax;
 	db.run("BEGIN TRANSACTION");
-	db.run("INSERT OR IGNORE INTO Assureur (Nom, Adresse, Telephone, Fax) VALUES (?,?,?,?)", [nomF, adresseF, telephoneF, faxF]);
+	db.run("INSERT OR REPLACE INTO Assureur (Nom, Adresse, Telephone, Fax) VALUES (?,?,?,?)", [nomF, adresseF, telephoneF, faxF]);
     db.run("END");
     console.log("Assureur ajouté avec succès");
-    res.redirect('/');
+    res.redirect('/voirDB/assureur');
 });
 
 app.get('/contratAssur', function(req, res) {
 	db.all("SELECT Nom, Adresse FROM Assureur", function(err, row) {	
 		res.render('ajoutContrAssur', {
 			titre:'ajout',
-	    	assureur:row
+	    	assureur:row,
+	    	data:"null"
 	    });
 	});
 });
@@ -44,10 +40,10 @@ app.post('/contratAssur', function(req, res) {
 	var adresseF = req.body.adresse;
 	var nomF = req.body.nom;
 	db.run("BEGIN TRANSACTION");
-	db.run("INSERT OR IGNORE INTO ContratAssur (Type, NomAssureur, AdresseAssureur) VALUES (?,?,?)", [typeF, nomF, adresseF]);
+	db.run("INSERT OR REPLACE INTO ContratAssur (Type, NomAssureur, AdresseAssureur) VALUES (?,?,?)", [typeF, nomF, adresseF]);
     db.run("END");
     console.log("Contrat d'assurance ajouté avec succès");
-    res.redirect('/');
+    res.redirect('/voirDB/contratAssur');
 });
 
 app.get('/clients', function(req, res) {
