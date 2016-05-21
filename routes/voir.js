@@ -7,7 +7,7 @@ var file = "LINGE1322.sqlite";
 var db = new sqlite3.Database(file);
 
 app.get('/', function(req, res) {	
-			res.render('voirDB', {
+			res.render('voir', {
 	    		titre:'voir',
 	    	}) 	
 });
