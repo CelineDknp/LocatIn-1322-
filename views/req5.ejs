@@ -1,0 +1,25 @@
+<% include ./header %>
+
+<div class="container">
+    <div class="center-template">    
+      <h1>Fidélité des clients</h1>
+      <table>
+        <thead>
+          <th>Nom du client</th>
+          <th>Prénom du client</th>
+          <th>Nombre de réservations effectuées</th>
+        </thead>
+        <tbody>
+          <%_ data.forEach(function(el){_%>
+            <tr>
+              <td><%=el.Nom %></td>
+              <td><%=el.Prenom %></td>
+              <td><%=el.Nombre %></td>
+            </tr>
+          <%_ }); _%>
+        </tbody>
+      </table>
+      <hr>
+  </div>
+</div>
+<% include ./footer %>
