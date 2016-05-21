@@ -32,6 +32,7 @@ var ajout = require('./routes/ajout.js');
 var voir = require('./routes/voir.js');
 var req1 = require('./routes/req1.js');
 var req2 = require('./routes/req2.js');
+var req3 = require('./routes/req3.js');
 
 //set l'engine des pages dynamiques à ejs
 app.set('view engine', 'ejs');
@@ -42,6 +43,7 @@ app.use('/ajoutDB', ajout);
 app.use('/voirDB', voir);
 app.use('/contratModele', req1);
 app.use('/factures', req2);
+app.use('/dedommagement', req3);
 
 
 app.use(function(req, res, next){

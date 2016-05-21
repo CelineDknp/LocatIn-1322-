@@ -20,8 +20,6 @@ app.get('/', function(req, res) {
 	var s10 = "Res.Voiture=V.NVoiture and V.CodeModele=T.CodeModele and T.Code=L.CodeTarif ";
 	db.run("BEGIN TRANSACTION");
 	db.run(s0);
-	//db.run("END");
-	//db.run("BEGIN TRANSACTION");
 	db.run(s1+s2+s3+s4+s5+s6+s7+s8+s9+s10);
 	db.run("END");
 	var s11 = "SELECT NFacture,	Nom, ID, Caution, FraisKMSupp, FraisRetard, Dedommagement, ";
