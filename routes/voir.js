@@ -85,7 +85,7 @@ app.get('/supprimerContrAssur/:id', function(req, res) {
 app.get('/editerContrAssur/:id', function(req, res) {
 	var condition = req.params.id;
 
-	db.all("SELECT * FROM ContratAssur WHERE NumContrat = "+condition, function(err, row) {
+	db.all("SELECT * FROM ContratAssur WHERE NumContrat = '"+condition+"'", function(err, row) {
 		db.all("SELECT Nom, Adresse FROM Assureur", function(err, row2) {
 			res.render('ajoutContrAssur', {
 	    		titre:'voir',
@@ -131,7 +131,7 @@ app.get('/supprimerClient/:id', function(req, res) {
 app.get('/editerClient/:id', function(req, res) {
 	var condition = req.params.id;
 
-	db.all("SELECT * FROM Client WHERE NClient = "+condition, function(err, row) {
+	db.all("SELECT * FROM Client WHERE NClient = '"+condition+"'", function(err, row) {
 			res.render('ajoutClient', {
 	    		titre:'voir',
 	    		data:row
@@ -174,7 +174,7 @@ app.get('/supprimerVoiture/:id', function(req, res) {
 app.get('/editerVoiture/:id', function(req, res) {
 	var condition = req.params.id;
 
-	db.all("SELECT * FROM Voiture WHERE NVoiture = "+condition, function(err, row) {
+	db.all("SELECT * FROM Voiture WHERE NVoiture = '"+condition+"'", function(err, row) {
 		db.all("SELECT Code FROM ModeleVoiture", function(err, row2) {	
 			res.render('editVoiture', {
 	    		titre:'voir',
@@ -207,6 +207,46 @@ app.get('/classesTarif', function(req, res) {
 		});  	
 });
 
+
+app.get('/supprimerClasseTarif/:id', function(req, res) {
+	var condition = req.params.id;
+
+	db.run("BEGIN TRANSACTION");
+	db.run("DELETE FROM classeTarif WHERE Code = ?", [condition]);
+	db.run("END");
+
+	res.redirect("/voirDB/classesTarif");
+		  	
+});
+
+app.get('/editerClasseTarif/:id', function(req, res) {
+	var condition = req.params.id;
+
+	db.all("SELECT * FROM classeTarif WHERE Code = '"+condition+"'", function(err, row) {
+		db.all("SELECT Code FROM ModeleVoiture", function(err, row2) {
+			db.all("SELECT NumContrat FROM ContratAssur", function(err, row3) {	
+				res.render('ajoutClasseTarif', {
+					titre:'ajout',
+					data:row,
+					modele:row2,
+					contrat:row3
+	    		});
+			});
+		});
+	});
+});
+
+app.post('/editerClasseTarif/:id', function(req, res) {
+	var condition = req.params.id;
+
+	db.run("BEGIN TRANSACTION");
+	db.run("UPDATE classeTarif SET Code = '"+req.body.codeT+ "' , PrixKM = '"+req.body.prix+
+								"' , AmendeJour = '"+req.body.amende+"' , CodeModele = '"+req.body.code+
+								"' , Contrat = '"+req.body.contrat+"' WHERE Code = "+condition);
+	db.run("END");
+	res.redirect("/voirDB/classesTarif");
+});
+
 app.get('/formules', function(req, res) {
 		db.all("SELECT * FROM formLoc", function(err, row) {	
 			res.render('tableForm', {
@@ -215,6 +255,49 @@ app.get('/formules', function(req, res) {
 	    		data:row
 	    	})
 		});
+});
+
+
+app.get('/supprimerFormule/:id', function(req, res) {
+	var conditions = req.params.id;
+	var reg=new RegExp("[,]+", "g");
+	var tab=conditions.split(reg);
+
+	db.run("BEGIN TRANSACTION");
+	db.run("DELETE FROM formLoc WHERE Type = ? and CodeTarif = ?", [tab[0], tab[1]]);
+	db.run("END");
+
+	res.redirect("/voirDB/formules");
+		  	
+});
+
+app.get('/editerFormule/:id', function(req, res) {
+	var conditions = req.params.id;
+	var reg=new RegExp("[,]+", "g");
+	var tab=conditions.split(reg);
+
+	db.all("SELECT * FROM formLoc WHERE Type = '"+tab[0]+"' and CodeTarif = '"+tab[1]+"'", function(err, row) {
+		db.all("SELECT Code FROM ClasseTarif", function(err, row2) {
+			res.render('ajoutFormLoc', {
+				titre:'ajout',
+				tarif:row2,
+				data:row
+	   		});
+		});
+	});
+});
+
+app.post('/editerFormule/:id', function(req, res) {
+	var conditions = req.params.id;
+	var reg=new RegExp("[,]+", "g");
+	var tab=conditions.split(reg);
+
+	db.run("BEGIN TRANSACTION");
+	db.run("UPDATE formLoc SET Type = '"+req.body.type+ "' , KMForfait = '"+req.body.km+
+								"' , CodeTarif = '"+req.body.code+"' , MontantForfait = '"+req.body.montant+
+								"' WHERE Type = '"+tab[0]+"' and CodeTarif = '"+tab[1]+"'");
+	db.run("END");
+	res.redirect("/voirDB/formules");
 });
 
 app.get('/modeles', function(req, res) {

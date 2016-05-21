@@ -1,7 +1,12 @@
 <% include ./header %>
 <div class="container-fluid text-center">    
     <div class="col-sm-8 text-left"> 
+    <%_ if(data=="null") {_%>
       <h1>Nouvelle formule de location</h1>
+      <%_}_%>
+      <%_ if(data!="null") {_%>
+      <h1>Éditer formule de location</h1>
+      <%_}_%>
       <form method="post" action="#" >
        <p>
           <label>Type :</label>
@@ -13,7 +18,7 @@
       </p>
       <p>
           <label>Kilomètres formaitaires :</label>
-          <input type="number" name="km" id="km" min=0 required>
+          <input type="number" value="<%= data[0].KMForfait %>" name="km" id="km" min=0 required>
       </p>
       <p>
           <label>Code de tarification :</label>
@@ -24,11 +29,11 @@
           </select>
       </p>
       <p>
-          <label>Montant formaitaire :</label>
-          <input type="number" name="montant" id="montant" min = 0 required>
+          <label>Montant forfaitaire :</label>
+          <input type="number" value="<%= data[0].MontantForfait %>" name="montant" id="montant" min = 0 required>
       </p>
       <p>
-          <button type="submit" class="btn-new" name="val">Ajouter</button>
+          <button type="submit" class="btn-new" name="val"><%_ if(data=="null") {_%>Ajouter<%_}_%><%_ if(data!="null") {_%>Editer<%_}_%></button>
       </p>
   </form>
     </div>

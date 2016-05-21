@@ -5,6 +5,7 @@
       <h1>Table <%= table %></h1>
       <table>
         <thead>
+        <th></th>
           <th>Code</th>
           <th>Prix au km</th>
           <th>Amende journalière</th>
@@ -14,6 +15,8 @@
         <tbody>
           <%_ data.forEach(function(el){_%>
             <tr>
+              <td><a href='supprimerClasseTarif/<%=el.Code%>' title="Supprimer cette ligne"><img src="/images/supp.png" alt="suppression"></a>
+                <a href='editerClasseTarif/<%=el.Code%>' title="Éditer cette ligne"><img src="/images/edit.png" alt="edition"></a></td>
               <td><%=el.Code %></td>
               <td><%=el.PrixKM %>€</td>
               <td><%=el.AmendeJour %>€</td>

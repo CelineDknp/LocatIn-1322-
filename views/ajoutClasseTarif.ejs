@@ -1,23 +1,28 @@
 <% include ./header %>
 <div class="container-fluid text-center">    
     <div class="col-sm-8 text-left"> 
+    <%_ if(data=="null") {_%>
       <h1>Nouvelle classe de tarification</h1>
+      <%_}_%>
+      <%_ if(data!="null") {_%>
+      <h1>Éditer classe de tarification</h1>
+      <%_}_%>
       <form method="post" action="#" >
       <p>
           <label>Code de la classe :</label>
-          <input type="text" name="codeT" id="codeT" required >
+          <input type="text" value="<%= data[0].Code %>" name="codeT" id="codeT" required >
       </p>
        <p>
           <label>Prix au kilomètre :</label>
-          <input type="number" name="prix" id="prix" min = 0 required >
+          <input type="number" value="<%= data[0].PrixKM %>" name="prix" id="prix" min = 0 required >
       </p>
       <p>
           <label>Amende journalière :</label>
-          <input type="number" name="amende" id="amende" min=0 required>
+          <input type="number" value="<%= data[0].AmendeJour %>" name="amende" id="amende" min=0 required>
       </p>
       <p>
           <label>Code du modèle :</label>
-          <select name="code" id="code" required>
+          <select name="code" value="<%= data[0].CodeModele %>" id="code" required>
             <%_ modele.forEach(function(el){_%>
                 <option><%= el.Code %></option>
             <%_ }); _%>
@@ -25,14 +30,14 @@
       </p>
       <p>
           <label>Numéro du contrat :</label>
-          <select name="contrat" id="contrat" required>
+          <select name="contrat" value="<%= data[0].Contrat %>" id="contrat" required>
             <%_ contrat.forEach(function(el){_%>
                 <option><%= el.NumContrat %></option>
             <%_ }); _%>
           </select>
       </p>
       <p>
-          <button type="submit" class="btn-new" name="val">Ajouter</button>
+          <button type="submit" class="btn-new" name="val"><%_ if(data=="null") {_%>Ajouter<%_}_%><%_ if(data!="null") {_%>Editer<%_}_%></button>
       </p>
   </form>
     </div>

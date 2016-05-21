@@ -54,7 +54,8 @@ app.post('/contratAssur', function(req, res) {
 
 app.get('/clients', function(req, res) {
 		res.render('ajoutClient', {
-			titre:'ajout'
+			titre:'ajout',
+			data:"null"
 	    });
 });
 
@@ -73,7 +74,8 @@ app.get('/voitures', function(req, res) {
 	db.all("SELECT Code FROM ModeleVoiture", function(err, row) {	
 		res.render('ajoutVoiture', {
 			titre:'ajout',
-			modele:row
+			modele:row,
+			data:"null"
 	    });
 	});
 });
@@ -95,7 +97,8 @@ app.get('/classesTarif', function(req, res) {
 			res.render('ajoutClasseTarif', {
 				titre:'ajout',
 				modele:row,
-				contrat:row2
+				contrat:row2,
+				data:"null"
 	    	});
 		});
 	});
@@ -111,14 +114,15 @@ app.post('/classesTarif', function(req, res) {
 	db.run("INSERT OR IGNORE INTO ClasseTarif (Code, PrixKM, AmendeJour, CodeModele, Contrat) VALUES (?,?,?,?,?)", [codeT, prixF, amendeF, codeF, contratF]);
     db.run("END");
     console.log("Classe de tarification ajoutée avec succès");
-    res.redirect('/');
+    res.redirect('/voirDB/classesTarif');
 });
 
 app.get('/formules', function(req, res) {
 	db.all("SELECT Code FROM ClasseTarif", function(err, row) {
 		res.render('ajoutFormLoc', {
 			titre:'ajout',
-			tarif:row
+			tarif:row,
+			data:"null"
 	   	});
 	});
 });
@@ -132,14 +136,15 @@ app.post('/formules', function(req, res) {
 	db.run("INSERT OR IGNORE INTO FormLoc (Type, KMForfait, CodeTarif, MontantForfait) VALUES (?,?,?,?)", [typeF, kmF, codeF, montantF]);
     db.run("END");
     console.log("Formule de location ajoutée avec succès");
-    res.redirect('/');
+    res.redirect('/voirDB/formules');
 });
 
 app.get('/modeles', function(req, res) {
 	db.all("SELECT Code FROM classeTarif", function(err, row) {
 		res.render('ajoutModele', {
 			titre:'ajout',
-			tarif:row
+			tarif:row,
+			data:"null"
 	   	});
 	});
 });
@@ -166,6 +171,7 @@ app.get('/reservation', function(req, res) {
 				titre:'ajout',
 				client:row,
 				voiture:row2,
+				data:"null"
 	   		});
 		});
 	});
@@ -188,7 +194,8 @@ app.get('/contratLoc', function(req, res) {
 	db.all("SELECT ID FROM Reservation", function(err, row) {
 		res.render('ajoutContratLoc', {
 			titre:'ajout',
-			reserv:row
+			reserv:row,
+			data:"null"
 	   	});
 	});
 });
@@ -213,7 +220,8 @@ app.get('/retour', function(req, res) {
 	db.all("SELECT ID FROM Reservation", function(err, row) {
 		res.render('ajoutRetour', {
 			titre:'ajout',
-			reserv:row
+			reserv:row,
+			data:"null"
 	   	});
 	});
 });
@@ -244,7 +252,8 @@ app.get('/factures', function(req, res) {
 	db.all("SELECT ID FROM Reservation", function(err, row) {
 		res.render('ajoutFacture', {
 			titre:'ajout',
-			reserv:row
+			reserv:row,
+			data:"null"
 	   	});
 	});
 });
