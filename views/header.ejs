@@ -24,8 +24,42 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li <%_ if(titre=='accueil') {_%> class='active' <%_}_%>><a href="/">Accueil</a></li>
-        <li <%_ if(titre=='voir') {_%> class='active' <%_}_%>><a href="/voirDB">Voir les données</a></li>
-        <li <%_ if(titre=='ajout') {_%> class='active' <%_}_%>><a href="/ajoutDB">Ajouter des données</a></li>
+        <li <%_ if(titre=='voir') {_%> class='active' <%_}_%>>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Voir les données
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/voirDB/assureur">Assureurs</a></li>
+                        <li><a href="/voirDB/contratAssur">Contrat d'assurance</a></li>
+                        <li><a href="/voirDB/clients">Clients</a></li>
+                        <li><a href="/voirDB/voitures">Voitures</a></li>
+                        <li><a href="/voirDB/classesTarif">Classes de tarification</a></li>
+                        <li><a href="/voirDB/formules">Formules de location</a></li>
+                        <li><a href="/voirDB/modeles">Modèles de voiture</a></li>
+                        <li><a href="/voirDB/reservation">Réservations</a></li>
+                        <li><a href="/voirDB/contratLoc">Contrats de location</a></li>
+                        <li><a href="/voirDB/retour">Bons de retour</a></li>
+                        <li><a href="/voirDB/factures">Factures</a></li>
+                    </ul>
+                </li>
+        <li <%_ if(titre=='ajout') {_%> class='active' <%_}_%>>
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Ajouter des données
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/ajoutDB/assureur">Nouvel assureur</a></li>
+                        <li><a href="/ajoutDB/contratAssur">Nouveau contrat d'assurance</a></li>
+                        <li><a href="/ajoutDB/clients">Nouveau client</a></li>
+                        <li><a href="/ajoutDB/voitures">Nouvelle voiture</a></li>
+                        <li><a href="/ajoutDB/classesTarif">Nouvelle classe de tarification</a></li>
+                        <li><a href="/ajoutDB/formules">Nouvelle formule de location</a></li>
+                        <li><a href="/ajoutDB/modeles">Nouveau modèle de voiture</a></li>
+                        <li><a href="/ajoutDB/reservation">Nouvelle réservation</a></li>
+                        <li><a href="/ajoutDB/contratLoc">Nouveau contrat de location</a></li>
+                        <li><a href="/ajoutDB/retour">Nouveau bons de retour</a></li>
+                        <li><a href="/ajoutDB/factures">Nouvelle facture</a></li>
+                    </ul>
+                </li>
         <li <%_ if(titre=='contrat') {_%> class='active' <%_}_%>><a href="/contratModele">Contrat des assureurs</a></li>
         <li <%_ if(titre=='factures') {_%> class='active' <%_}_%>><a href="/factures">Détail des factures</a></li>
         <li <%_ if(titre=='dedommagement') {_%> class='active' <%_}_%>><a href="/dedommagement">Remboursements</a></li>

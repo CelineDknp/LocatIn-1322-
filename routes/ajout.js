@@ -30,7 +30,7 @@ app.post('/assureur', function(req, res) {
     res.redirect('/');
 });
 
-app.get('/contrAssur', function(req, res) {
+app.get('/contratAssur', function(req, res) {
 	db.all("SELECT Nom, Adresse FROM Assureur", function(err, row) {	
 		res.render('ajoutContrAssur', {
 			titre:'ajout',
@@ -39,7 +39,7 @@ app.get('/contrAssur', function(req, res) {
 	});
 });
 
-app.post('/contrAssur', function(req, res) {
+app.post('/contratAssur', function(req, res) {
 	var typeF = req.body.type;
 	var adresseF = req.body.adresse;
 	var nomF = req.body.nom;
@@ -50,13 +50,13 @@ app.post('/contrAssur', function(req, res) {
     res.redirect('/');
 });
 
-app.get('/client', function(req, res) {
+app.get('/clients', function(req, res) {
 		res.render('ajoutClient', {
 			titre:'ajout'
 	    });
 });
 
-app.post('/client', function(req, res) {
+app.post('/clients', function(req, res) {
 	var prenomF = req.body.prenom;
 	var adresseF = req.body.adresse;
 	var nomF = req.body.nom;
@@ -67,7 +67,7 @@ app.post('/client', function(req, res) {
     res.redirect('/');
 });
 
-app.get('/voiture', function(req, res) {
+app.get('/voitures', function(req, res) {
 	db.all("SELECT Code FROM ModeleVoiture", function(err, row) {	
 		res.render('ajoutVoiture', {
 			titre:'ajout',
@@ -76,7 +76,7 @@ app.get('/voiture', function(req, res) {
 	});
 });
 
-app.post('/voiture', function(req, res) {
+app.post('/voitures', function(req, res) {
 	var dateF = req.body.date;
 	var prixF = req.body.prix;
 	var codeF = req.body.code;
@@ -87,7 +87,7 @@ app.post('/voiture', function(req, res) {
     res.redirect('/');
 });
 
-app.get('/classeTarif', function(req, res) {
+app.get('/classesTarif', function(req, res) {
 	db.all("SELECT Code FROM ModeleVoiture", function(err, row) {
 		db.all("SELECT NumContrat FROM ContratAssur", function(err, row2) {	
 			res.render('ajoutClasseTarif', {
@@ -99,7 +99,7 @@ app.get('/classeTarif', function(req, res) {
 	});
 });
 
-app.post('/classeTarif', function(req, res) {
+app.post('/classesTarif', function(req, res) {
 	var codeT = req.body.codeT;
 	var amendeF = req.body.amende;
 	var prixF = req.body.prix;
@@ -112,7 +112,7 @@ app.post('/classeTarif', function(req, res) {
     res.redirect('/');
 });
 
-app.get('/formLoc', function(req, res) {
+app.get('/formules', function(req, res) {
 	db.all("SELECT Code FROM ClasseTarif", function(err, row) {
 		res.render('ajoutFormLoc', {
 			titre:'ajout',
@@ -121,7 +121,7 @@ app.get('/formLoc', function(req, res) {
 	});
 });
 
-app.post('/formLoc', function(req, res) {
+app.post('/formules', function(req, res) {
 	var typeF = req.body.type;
 	var kmF = req.body.km;
 	var codeF = req.body.code;
@@ -133,7 +133,7 @@ app.post('/formLoc', function(req, res) {
     res.redirect('/');
 });
 
-app.get('/modele', function(req, res) {
+app.get('/modeles', function(req, res) {
 	db.all("SELECT Code FROM classeTarif", function(err, row) {
 		res.render('ajoutModele', {
 			titre:'ajout',
@@ -142,7 +142,7 @@ app.get('/modele', function(req, res) {
 	});
 });
 
-app.post('/modele', function(req, res) {
+app.post('/modeles', function(req, res) {
 	var codeF = req.body.code;
 	var libelleF = req.body.libelle;
 	var marqueF = req.body.marque;
@@ -238,7 +238,7 @@ app.post('/retour', function(req, res) {
     res.redirect('/');
 });
 
-app.get('/facture', function(req, res) {
+app.get('/factures', function(req, res) {
 	db.all("SELECT ID FROM Reservation", function(err, row) {
 		res.render('ajoutFacture', {
 			titre:'ajout',
@@ -247,7 +247,7 @@ app.get('/facture', function(req, res) {
 	});
 });
 
-app.post('/facture', function(req, res) {
+app.post('/factures', function(req, res) {
 	var reservF = req.body.reserv;
 	db.run("BEGIN TRANSACTION");
 	db.run("INSERT OR IGNORE INTO Facture (NReserv) VALUES (?)", [reservF]);
