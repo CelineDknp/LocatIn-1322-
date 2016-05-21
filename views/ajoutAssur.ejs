@@ -1,0 +1,28 @@
+<% include ./header %>
+<div class="container-fluid text-center">    
+    <div class="col-sm-8 text-left"> 
+      <h1>Nouvel assureur</h1>
+      <form method="post" action="#" >
+       <p>
+          <label>Nom :</label>
+          <input type="text" name="nom" id="nom" required >
+      </p>
+      <p>
+          <label>Adresse :</label>
+          <input type="text" name="adresse" id="adresse" required>
+      </p>
+      <p>
+          <label>Téléphone :</label>
+          <input type="tel" name="tel" id="tel" required >
+      </p>
+      <p>
+          <label>Fax :</label>
+          <input type="tel" name="fax" id="fax" required >
+      </p>
+      <p>
+          <button type="submit" class="btn-new" name="val">Ajouter</button>
+      </p>
+  </form>
+    </div>
+</div>
+<% include ./footer %>

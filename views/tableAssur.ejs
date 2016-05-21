@@ -1,0 +1,27 @@
+<% include ./header %>
+
+<div class="container">
+    <div class="center-template">    
+      <h1>Table <%= table %></h1>
+      <table>
+        <thead>
+          <th>Nom</th>
+          <th>Adresse</th>
+          <th>Telephone</th>
+          <th>Fax</th>
+        </thead>
+        <tbody>
+          <%_ data.forEach(function(el){_%>
+            <tr>
+              <td><%=el.Nom %></td>
+              <td><%=el.Adresse %></td>
+              <td><%=el.Telephone %></td>
+              <td><%=el.Fax %></td>
+            </tr>
+          <%_ }); _%>
+        </tbody>
+      </table>
+      <hr>
+  </div>
+</div>
+<% include ./footer %>

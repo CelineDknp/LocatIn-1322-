@@ -1,0 +1,44 @@
+<% include ./header %>
+<div class="container-fluid text-center">    
+    <div class="col-sm-8 text-left"> 
+      <h1>Nouveau dodèle de voiture</h1>
+      <form method="post" action="#" >
+       <p>
+          <label>Code du modèle :</label>
+          <input type="text" name="code" id="code" required >
+      </p>
+      <p>
+          <label>Amende journalière :</label>
+          <input type="text" name="amende" id="amende" required>
+      </p>
+      <p>
+          <label>Libelle :</label>
+          <input type="text" name="libelle" id="libelle" required>
+      </p>
+      <p>
+          <label>Marque :</label>
+          <input type="text" name="marque" id="marque" required>
+      </p>
+      <p>
+          <label>Type :</label>
+          <input type="text" name="type" id="type" required>
+      </p>
+      <p>
+          <label>Puissance :</label>
+          <input type="text" name="puissance" id="puissance" required>
+      </p>
+      <p>
+          <label>Code de tarification :</label>
+          <select name="codeT" id="codeT" required>
+            <%_ tarif.forEach(function(el){_%>
+                <option><%= el.Code %></option>
+            <%_ }); _%>
+          </select>
+      </p>
+      <p>
+          <button type="submit" class="btn-new" name="val">Ajouter</button>
+      </p>
+  </form>
+    </div>
+</div>
+<% include ./footer %>

@@ -1,0 +1,40 @@
+<% include ./header %>
+<div class="container-fluid text-center">    
+    <div class="col-sm-8 text-left"> 
+      <h1>Nouvelle réservation</h1>
+      <form method="post" action="#" >
+       <p>
+          <label>Numéro du client :</label>
+          <select name="client" id="client" required>
+            <%_ client.forEach(function(el){_%>
+                <option><%= el.NClient %></option>
+            <%_ }); _%>
+          </select>
+      </p>
+      <p>
+          <label>Date :</label>
+          <input type="text" name="date" id="date" required>
+      </p>
+      <p>
+          <label>Numéro de la voiture :</label>
+          <select name="voiture" id="voiture" required>
+            <%_ voiture.forEach(function(el){_%>
+                <option><%= el.NVoiture %></option>
+            <%_ }); _%>
+          </select>
+      </p>
+      <p>
+          <label>Type de réservation :</label>
+          <select name="type" id="type" required>
+            <option>jour</option>
+            <option>semaine</option>
+            <option>weekEnd</option>
+          </select>
+      </p>
+      <p>
+          <button type="submit" class="btn-new" name="val">Ajouter</button>
+      </p>
+  </form>
+    </div>
+</div>
+<% include ./footer %>

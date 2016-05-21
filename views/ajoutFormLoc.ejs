@@ -1,0 +1,36 @@
+<% include ./header %>
+<div class="container-fluid text-center">    
+    <div class="col-sm-8 text-left"> 
+      <h1>Nouvelle formule de location</h1>
+      <form method="post" action="#" >
+       <p>
+          <label>Type :</label>
+          <select name="type" id="type" required>
+            <option>jour</option>
+            <option>semaine</option>
+            <option>weekEnd</option>
+          </select>
+      </p>
+      <p>
+          <label>Kilomètres formaitaires :</label>
+          <input type="number" name="km" id="km" min=0 required>
+      </p>
+      <p>
+          <label>Code de tarification :</label>
+          <select name="code" id="code" required>
+            <%_ tarif.forEach(function(el){_%>
+                <option><%= el.Code %></option>
+            <%_ }); _%>
+          </select>
+      </p>
+      <p>
+          <label>Montant formaitaire :</label>
+          <input type="number" name="montant" id="montant" min = 0 required>
+      </p>
+      <p>
+          <button type="submit" class="btn-new" name="val">Ajouter</button>
+      </p>
+  </form>
+    </div>
+</div>
+<% include ./footer %>

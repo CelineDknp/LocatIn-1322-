@@ -1,0 +1,35 @@
+<% include ./header %>
+
+<div class="container">
+    <div class="center-template">    
+      <h1>Détail des factures</h1>
+      <table>
+        <thead>
+          <th>Numéro de facture</th>
+          <th>Nom du client</th>
+          <th>Numéro de réservation</th>
+          <th>Caution</th>
+          <th>Frais km supplémentaires</th>
+          <th>Frais de retard</th>
+          <th>Dédommagement voiture indisponible</th>
+          <th>Total</th>
+        </thead>
+        <tbody>
+          <%_ data.forEach(function(el){_%>
+            <tr>
+              <td><%=el.NFacture %></td>
+              <td><%=el.Nom %></td>
+              <td><%=el.ID %></td>
+              <td><%=el.Caution %>€</td>
+              <td><%=el.FraisKMSupp %>€</td>
+              <td><%=el.FraisRetard %>€</td>
+              <td><%=el.Dedommagement %>€</td>
+              <td><%=el.Total %>€</td>
+            </tr>
+          <%_ }); _%>
+        </tbody>
+      </table>
+      <hr>
+  </div>
+</div>
+<% include ./footer %>

@@ -1,0 +1,34 @@
+<% include ./header %>
+
+<div class="container-fluid text-center">    
+    <div class="col-sm-8 text-left"> 
+      <h1>Nouveau contrat d'assurance</h1>
+      <form method="post" action="#" >
+      <p>
+          <label>Type de contrat :</label>
+          <input type="text" name="type" id="type" required>
+      </p>
+      <p>
+          <label>Nom de l'assureur :</label>
+          <select name="nom" id="nom" required>
+            <%_ assureur.forEach(function(el){_%>
+                <option><%= el.Nom %></option>
+            <%_ }); _%>
+          </select>
+      </p>
+      <p>
+          <label>Adresse de l'assureur :</label>
+          <select name="adresse" id="adresse" required>
+            <%_ assureur.forEach(function(el){_%>
+                <option><%= el.Adresse %></option>
+            <%_ }); _%>
+          </select>
+      </p>
+      <p>
+          <button type="submit" class="btn-new" name="val">Ajouter</button>
+      </p>
+  </form>
+    </div>
+</div>
+
+<% include ./footer %>

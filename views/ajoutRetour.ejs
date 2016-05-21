@@ -1,0 +1,32 @@
+<% include ./header %>
+<div class="container-fluid text-center">    
+    <div class="col-sm-8 text-left"> 
+      <h1>Nouveau bon de retour</h1>
+      <form method="post" action="#" >
+       <p>
+          <label>Numéro de la réservation :</label>
+          <select name="reserv" id="reserv" required>
+            <%_ reserv.forEach(function(el){_%>
+                <option><%= el.ID %></option>
+            <%_ }); _%>
+          </select>
+      </p>
+      <p>
+          <label>Kilométrage au retour :</label>
+          <input type="number" name="km" id="km" min=0 required>
+      </p>
+      <p>
+          <label>Date de retour :</label>
+          <input type="text" name="date" id="date" required>
+      </p>
+      <p>
+          <label>Réparations :</label>
+          <input type="text" name="rep" id="rep">
+      </p>
+      <p>
+          <button type="submit" class="btn-new" name="val">Ajouter</button>
+      </p>
+  </form>
+    </div>
+</div>
+<% include ./footer %>

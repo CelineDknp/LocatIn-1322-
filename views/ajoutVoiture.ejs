@@ -1,0 +1,28 @@
+<% include ./header %>
+<div class="container-fluid text-center">    
+    <div class="col-sm-8 text-left"> 
+      <h1>Nouvelle voiture</h1>
+      <form method="post" action="#" >
+       <p>
+          <label>Date d'achat :</label>
+          <input type="text" name="date" id="date" required >
+      </p>
+      <p>
+          <label>Prix d'achat :</label>
+          <input type="text" name="prix" id="prix" required>
+      </p>
+      <p>
+          <label>Code du modèle :</label>
+          <select name="code" id="code" required>
+            <%_ modele.forEach(function(el){_%>
+                <option><%= el.Code %></option>
+            <%_ }); _%>
+          </select>
+      </p>
+      <p>
+          <button type="submit" class="btn-new" name="val">Ajouter</button>
+      </p>
+  </form>
+    </div>
+</div>
+<% include ./footer %>

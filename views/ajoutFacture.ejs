@@ -1,0 +1,20 @@
+<% include ./header %>
+<div class="container-fluid text-center">    
+    <div class="col-sm-8 text-left"> 
+      <h1>Nouvelle facture</h1>
+      <form method="post" action="#" >
+       <p>
+          <label>Numéro de la réservation :</label>
+          <select name="reserv" id="reserv" required>
+            <%_ reserv.forEach(function(el){_%>
+                <option><%= el.ID %></option>
+            <%_ }); _%>
+          </select>
+      </p>
+      <p>
+          <button type="submit" class="btn-new" name="val">Ajouter</button>
+      </p>
+  </form>
+    </div>
+</div>
+<% include ./footer %>
