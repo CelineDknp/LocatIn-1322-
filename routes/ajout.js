@@ -66,7 +66,7 @@ app.post('/clients', function(req, res) {
 	db.run("INSERT OR IGNORE INTO Client (Nom, Prenom, Adresse) VALUES (?,?,?)", [nomF, prenomF, adresseF]);
     db.run("END");
     console.log("Client ajouté avec succès");
-    res.redirect('/');
+    res.redirect('/voirDB/clients');
 });
 
 app.get('/voitures', function(req, res) {

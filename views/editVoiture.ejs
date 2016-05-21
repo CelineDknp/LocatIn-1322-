@@ -1,0 +1,36 @@
+<% include ./header %>
+<div class="container-fluid text-center">    
+    <div class="col-sm-8 text-left"> 
+      <h1>Editer voiture</h1>
+      <form method="post" action="#" >
+       <p>
+          <label>Date d'achat :</label>
+          <input type="text" value="<%= data[0].DateAchat %>" name="date" id="date" required >
+      </p>
+      <p>
+          <label>Prix d'achat :</label>
+          <input type="text" value="<%= data[0].PrixAchat %>" name="prix" id="prix" required>
+      </p>
+      <p>
+          <label>Statut actuel :</label>
+          <select name="statut" value="<%= data[0].Statut %>" id="statut" required>
+                <option>libre</option>
+                <option>empruntée</option>
+                <option>en réparation</option>
+          </select>
+      </p>
+      <p>
+          <label>Code du modèle :</label>
+          <select name="code" value="<%= data[0].CodeModele %>" id="code" required>
+            <%_ modele.forEach(function(el){_%>
+                <option><%= el.Code %></option>
+            <%_ }); _%>
+          </select>
+      </p>
+      <p>
+          <button type="submit" class="btn-new" name="val">Editer</button>
+      </p>
+  </form>
+    </div>
+</div>
+<% include ./footer %>

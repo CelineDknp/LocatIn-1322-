@@ -25,7 +25,7 @@
           <input type="tel" value="<%= data[0].Fax %>" name="fax" id="fax" required >
       </p>
       <p>
-          <button type="submit" class="btn-new" name="val">Ajouter</button>
+          <button type="submit" class="btn-new" name="val"><%_ if(data=="null") {_%>Ajouter<%_}_%><%_ if(data!="null") {_%>Editer<%_}_%></button>
       </p>
   </form>
     </div>

@@ -117,6 +117,39 @@ app.get('/clients', function(req, res) {
 		}); 	
 });
 
+app.get('/supprimerClient/:id', function(req, res) {
+	var condition = req.params.id;
+
+	db.run("BEGIN TRANSACTION");
+	db.run("DELETE FROM Client WHERE NClient = ?", [condition]);
+	db.run("END");
+
+	res.redirect("/voirDB/clients");
+		  	
+});
+
+app.get('/editerClient/:id', function(req, res) {
+	var condition = req.params.id;
+
+	db.all("SELECT * FROM Client WHERE NClient = "+condition, function(err, row) {
+			res.render('ajoutClient', {
+	    		titre:'voir',
+	    		data:row
+	    	});
+	});
+});
+
+app.post('/editerClient/:id', function(req, res) {
+	var condition = req.params.id;
+
+	db.run("BEGIN TRANSACTION");
+	db.run("UPDATE Client SET Nom = '"+req.body.nom+ "' , Prenom = '"+req.body.prenom+
+								"' , Adresse = '"+req.body.adresse+
+								"' WHERE NClient = "+condition);
+	db.run("END");
+	res.redirect("/voirDB/clients");
+});
+
 app.get('/voitures', function(req, res) {
 		db.all("SELECT * FROM Voiture", function(err, row) {	
 			res.render('tableVoiture', {
@@ -126,6 +159,43 @@ app.get('/voitures', function(req, res) {
 	    	})
 		});  	
 });
+
+app.get('/supprimerVoiture/:id', function(req, res) {
+	var condition = req.params.id;
+
+	db.run("BEGIN TRANSACTION");
+	db.run("DELETE FROM Voiture WHERE NVoiture = ?", [condition]);
+	db.run("END");
+
+	res.redirect("/voirDB/voitures");
+		  	
+});
+
+app.get('/editerVoiture/:id', function(req, res) {
+	var condition = req.params.id;
+
+	db.all("SELECT * FROM Voiture WHERE NVoiture = "+condition, function(err, row) {
+		db.all("SELECT Code FROM ModeleVoiture", function(err, row2) {	
+			res.render('editVoiture', {
+	    		titre:'voir',
+	    		data:row,
+	    		modele:row2
+	    	});
+		});
+	});
+});
+
+app.post('/editerVoiture/:id', function(req, res) {
+	var condition = req.params.id;
+
+	db.run("BEGIN TRANSACTION");
+	db.run("UPDATE Voiture SET DateAchat = '"+req.body.date+ "' , PrixAchat = '"+req.body.prix+
+								"' , Statut = '"+req.body.statut+"' , CodeModele = '"+req.body.code+
+								"' WHERE NVoiture = "+condition);
+	db.run("END");
+	res.redirect("/voirDB/voitures");
+});
+
 
 app.get('/classesTarif', function(req, res) {
 		db.all("SELECT * FROM classeTarif", function(err, row) {	

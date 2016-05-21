@@ -1,22 +1,27 @@
 <% include ./header %>
 <div class="container-fluid text-center">    
     <div class="col-sm-8 text-left"> 
+      <%_ if(data=="null") {_%>
       <h1>Nouveau client</h1>
+      <%_}_%>
+      <%_ if(data!="null") {_%>
+      <h1>Éditer client</h1>
+      <%_}_%>
       <form method="post" action="#" >
        <p>
           <label>Nom :</label>
-          <input type="text" name="nom" id="nom" required >
+          <input type="text" value="<%= data[0].Nom %>" name="nom" id="nom" required >
       </p>
       <p>
           <label>Prénom :</label>
-          <input type="text" name="prenom" id="prenom" required >
+          <input type="text" value="<%= data[0].Prenom %>" name="prenom" id="prenom" required >
       </p>
       <p>
           <label>Adresse :</label>
-          <input type="text" name="adresse" id="adresse" required>
+          <input type="text" value="<%= data[0].Adresse %>" name="adresse" id="adresse" required>
       </p>
       <p>
-          <button type="submit" class="btn-new" name="val">Ajouter</button>
+          <button type="submit" class="btn-new" name="val"><%_ if(data=="null") {_%>Ajouter<%_}_%><%_ if(data!="null") {_%>Editer<%_}_%></button>
       </p>
   </form>
     </div>
