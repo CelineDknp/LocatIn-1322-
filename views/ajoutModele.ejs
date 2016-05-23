@@ -32,7 +32,12 @@
           <label>Code de tarification :</label>
           <select name="codeT" id="codeT" required>
             <%_ tarif.forEach(function(el){_%>
-                <option><%= el.Code %></option>
+                <%_ if(data[0].CodeTarif == el.Code) {_%>
+                <option selected> <%= el.Code %> </option>
+                <%_}_%>
+                <%_ if(data[0].CodeTarif != el.Code) {_%>
+                <option> <%= el.Code %> </option>
+                <%_}_%>
             <%_ }); _%>
           </select>
       </p>

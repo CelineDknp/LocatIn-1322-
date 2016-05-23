@@ -17,7 +17,12 @@
           <label>Nom de l'assureur :</label>
           <select name="nom" value="<%= data[0].NomAssureur %>" id="nom" required>
             <%_ assureur.forEach(function(el){_%>
-                <option><%= el.Nom %></option>
+                <%_ if(data[0].NomAssureur == el.Nom) {_%>
+                <option selected> <%= el.Nom %> </option>
+                <%_}_%>
+                <%_ if(data[0].NomAssureur != el.Nom) {_%>
+                <option> <%= el.Nom %> </option>
+                <%_}_%>
             <%_ }); _%>
           </select>
       </p>
@@ -25,7 +30,12 @@
           <label>Adresse de l'assureur :</label>
           <select name="adresse" value="<%= data[0].AdresseAssureur %>" id="adresse" required>
             <%_ assureur.forEach(function(el){_%>
-                <option><%= el.Adresse %></option>
+                <%_ if(data[0].AdresseAssureur == el.Adresse) {_%>
+                <option selected> <%= el.Adresse %> </option>
+                <%_}_%>
+                <%_ if(data[0].AdresseAssureur != el.Adresse) {_%>
+                <option> <%= el.Adresse %> </option>
+                <%_}_%>
             <%_ }); _%>
           </select>
       </p>

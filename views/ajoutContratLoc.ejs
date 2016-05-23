@@ -12,7 +12,12 @@
           <label>Numéro de la réservation :</label>
           <select name="reserv" id="reserv" required>
             <%_ reserv.forEach(function(el){_%>
-                <option><%= el.ID %></option>
+                <%_ if(data[0].NReserv == el.ID) {_%>
+                <option selected> <%= el.ID %> </option>
+                <%_}_%>
+                <%_ if(data[0].NReserv != el.ID) {_%>
+                <option> <%= el.ID %> </option>
+                <%_}_%>
             <%_ }); _%>
           </select>
       </p>
@@ -27,8 +32,14 @@
       <p>
           <label>Caution :</label>
           <select name="caution" id="caution" required>
-            <option>Payée</option>
+            <%_ if(data[0].Caution == "Payée") {_%>
+            <option selected>Payée</option>
             <option>Non payée</option>
+            <%_}_%>
+            <%_ if(data[0].Caution != "Payée") {_%>
+            <option>Payée</option>
+            <option selected >Non payée</option>
+            <%_}_%>
           </select>
       </p>
       <p>

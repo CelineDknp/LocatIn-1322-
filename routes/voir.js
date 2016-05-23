@@ -226,7 +226,7 @@ app.get('/editerClasseTarif/:id', function(req, res) {
 		db.all("SELECT Code FROM ModeleVoiture", function(err, row2) {
 			db.all("SELECT NumContrat FROM ContratAssur", function(err, row3) {	
 				res.render('ajoutClasseTarif', {
-					titre:'ajout',
+					titre:'voir',
 					data:row,
 					modele:row2,
 					contrat:row3
@@ -279,7 +279,7 @@ app.get('/editerFormule/:id', function(req, res) {
 	db.all("SELECT * FROM formLoc WHERE Type = '"+tab[0]+"' and CodeTarif = '"+tab[1]+"'", function(err, row) {
 		db.all("SELECT Code FROM ClasseTarif", function(err, row2) {
 			res.render('ajoutFormLoc', {
-				titre:'ajout',
+				titre:'voir',
 				tarif:row2,
 				data:row
 	   		});
@@ -328,7 +328,7 @@ app.get('/editerModele/:id', function(req, res) {
 	db.all("SELECT * FROM ModeleVoiture WHERE Code = '"+condition+"'", function(err, row) {
 		db.all("SELECT Code FROM classeTarif", function(err, row2) {
 			res.render('ajoutModele', {
-				titre:'ajout',
+				titre:'voir',
 				tarif:row2,
 				data:row
 	   		});
@@ -377,7 +377,7 @@ app.get('/editerReservation/:id', function(req, res) {
 			db.all("SELECT NVoiture FROM Voiture WHERE Statut='libre'", function(err, row3) {
 				db.all("SELECT * FROM Reservation", function(err, row4) {
 					res.render('editReservation', {
-						titre:'ajout',
+						titre:'voir',
 						client:row2,
 						voiture:row3,
 						allReserv:row4,
@@ -431,7 +431,7 @@ app.get('/editerContratLoc/:id', function(req, res) {
 	db.all("SELECT * FROM contratLoc WHERE NReserv = '"+condition+"'", function(err, row) {
 		db.all("SELECT ID FROM Reservation", function(err, row2) {
 			res.render('ajoutContratLoc', {
-				titre:'ajout',
+				titre:'voir',
 				reserv:row2,
 				data:row
 	   		});
@@ -476,7 +476,7 @@ app.get('/editerRetour/:id', function(req, res) {
 	db.all("SELECT * FROM retour WHERE NReserv = '"+condition+"'", function(err, row) {
 		db.all("SELECT ID FROM Reservation", function(err, row2) {
 			res.render('ajoutRetour', {
-			titre:'ajout',
+			titre:'voir',
 			reserv:row2,
 			data:row
 	   		});
@@ -521,7 +521,7 @@ app.get('/editerFacture/:id', function(req, res) {
 	db.all("SELECT * FROM facture WHERE NFacture = '"+condition+"'", function(err, row) {
 		db.all("SELECT ID FROM Reservation", function(err, row2) {
 			res.render('ajoutFacture', {
-			titre:'ajout',
+			titre:'voir',
 			reserv:row2,
 			data:row
 	   		});

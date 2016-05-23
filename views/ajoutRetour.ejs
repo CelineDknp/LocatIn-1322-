@@ -12,7 +12,12 @@
           <label>Numéro de la réservation :</label>
           <select name="reserv" id="reserv" required>
             <%_ reserv.forEach(function(el){_%>
-                <option><%= el.ID %></option>
+                <%_ if(data[0].NReserv == el.ID) {_%>
+                <option selected> <%= el.ID %> </option>
+                <%_}_%>
+                <%_ if(data[0].NReserv != el.ID) {_%>
+                <option> <%= el.ID %> </option>
+                <%_}_%>
             <%_ }); _%>
           </select>
       </p>
@@ -26,7 +31,7 @@
       </p>
       <p>
           <label>Réparations :</label>
-          <input type="text" value="<%= data[0].Reparation %>" title='Indiquez "Non" si la voiture n'a pas besoin de réparation" name="rep" id="rep">
+          <input type="text" value="<%= data[0].Reparation %>" title='Indiquez "Non" si la voiture ne doit pas être réparée' name="rep" id="rep">
       </p>
       <p>
           <button type="submit" class="btn-new" name="val"><%_ if(data=="null") {_%>Ajouter<%_}_%><%_ if(data!="null") {_%>Editer<%_}_%></button>

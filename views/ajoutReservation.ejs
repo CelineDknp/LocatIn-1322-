@@ -7,7 +7,7 @@
           <label>Numéro du client :</label>
           <select name="client" id="client" required>
             <%_ client.forEach(function(el){_%>
-                <option><%= el.NClient %></option>
+                <option> <%= el.NClient %> </option>
             <%_ }); _%>
           </select>
       </p>
@@ -19,16 +19,16 @@
           <label>Numéro de la voiture :</label>
           <select name="voiture" id="voiture" required>
             <%_ voiture.forEach(function(el){_%>
-                <option><%= el.NVoiture %></option>
+                <option> <%= el.NVoiture %> </option>
             <%_ }); _%>
           </select>
       </p>
       <p>
           <label>Type de réservation :</label>
           <select name="type" id="type" required>
-            <option>jour</option>
-            <option>semaine</option>
-            <option>weekEnd</option>
+                <option> jour </option>
+                <option>semaine</option>
+                <option>weekEnd</option>
           </select>
       </p>
       <p>

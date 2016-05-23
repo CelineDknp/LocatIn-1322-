@@ -14,16 +14,33 @@
       <p>
           <label>Statut actuel :</label>
           <select name="statut" value="<%= data[0].Statut %>" id="statut" required>
-                <option>libre</option>
+              <%_ if(data[0].Statut == "libre") {_%>
+                <option selected >libre</option>
                 <option>empruntée</option>
                 <option>en réparation</option>
+              <%_}_%>
+              <%_ if(data[0].Statut == "empruntée") {_%>
+                <option>libre</option>
+                <option selected >empruntée</option>
+                <option>en réparation</option>
+              <%_}_%>
+              <%_ if(data[0].Statut == "en réparation") {_%>
+                <option>libre</option>
+                <option>empruntée</option>
+                <option selected >en réparation</option>
+              <%_}_%>
           </select>
       </p>
       <p>
           <label>Code du modèle :</label>
           <select name="code" value="<%= data[0].CodeModele %>" id="code" required>
             <%_ modele.forEach(function(el){_%>
-                <option><%= el.Code %></option>
+                <%_ if(data[0].CodeModele == el.Code) {_%>
+                <option selected> <%= el.Code %> </option>
+                <%_}_%>
+                <%_ if(data[0].CodeModele != el.Code) {_%>
+                <option> <%= el.Code %> </option>
+                <%_}_%>
             <%_ }); _%>
           </select>
       </p>

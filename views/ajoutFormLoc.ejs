@@ -11,9 +11,21 @@
        <p>
           <label>Type :</label>
           <select name="type" id="type" required>
-            <option>jour</option>
-            <option>semaine</option>
-            <option>weekEnd</option>
+            <%_ if(data[0].Type == "jour") {_%>
+                <option selected > jour </option>
+                <option>semaine</option>
+                <option>weekEnd</option>
+            <%_}_%>
+            <%_ if(data[0].Type == "semaine") {_%>
+                <option> jour </option>
+                <option selected >semaine</option>
+                <option>weekEnd</option>
+            <%_}_%>
+            <%_ if(data[0].Type == "weekEnd") {_%>
+                <option> jour </option>
+                <option>semaine</option>
+                <option selected >weekEnd</option>
+            <%_}_%>
           </select>
       </p>
       <p>
@@ -24,7 +36,12 @@
           <label>Code de tarification :</label>
           <select name="code" id="code" required>
             <%_ tarif.forEach(function(el){_%>
-                <option><%= el.Code %></option>
+                <%_ if(data[0].CodeTarif == el.Code) {_%>
+                <option selected> <%= el.Code %> </option>
+                <%_}_%>
+                <%_ if(data[0].CodeTarif != el.Code) {_%>
+                <option> <%= el.Code %> </option>
+                <%_}_%>
             <%_ }); _%>
           </select>
       </p>

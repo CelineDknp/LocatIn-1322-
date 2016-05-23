@@ -7,7 +7,12 @@
           <label>Numéro du client :</label>
           <select name="client" id="client" required>
             <%_ client.forEach(function(el){_%>
-                <option><%= el.NClient %></option>
+                <%_ if(data[0].NClient == el.NClient) {_%>
+                <option selected> <%= el.NClient %> </option>
+                <%_}_%>
+                <%_ if(data[0].NClient != el.NClient) {_%>
+                <option> <%= el.NClient %> </option>
+                <%_}_%>
             <%_ }); _%>
           </select>
       </p>
@@ -19,25 +24,62 @@
           <label>Numéro de la voiture :</label>
           <select name="voiture" id="voiture" required>
             <%_ voiture.forEach(function(el){_%>
-                <option><%= el.NVoiture %></option>
+                <%_ if(data[0].Voiture == el.NVoiture) {_%>
+                <option selected> <%= el.NVoiture %> </option>
+                <%_}_%>
+                <%_ if(data[0].Voiture != el.NVoiture) {_%>
+                <option> <%= el.NVoiture %> </option>
+                <%_}_%>
             <%_ }); _%>
           </select>
       </p>
       <p>
           <label>Type de réservation :</label>
           <select name="type" id="type" required>
-            <option>jour</option>
-            <option>semaine</option>
-            <option>weekEnd</option>
+            <%_ if(data[0].TypeLoc == "jour") {_%>
+                <option selected > jour </option>
+                <option>semaine</option>
+                <option>weekEnd</option>
+            <%_}_%>
+            <%_ if(data[0].TypeLoc == "semaine") {_%>
+                <option> jour </option>
+                <option selected >semaine</option>
+                <option>weekEnd</option>
+            <%_}_%>
+            <%_ if(data[0].TypeLoc == "weekEnd") {_%>
+                <option> jour </option>
+                <option>semaine</option>
+                <option selected >weekEnd</option>
+            <%_}_%>
           </select>
       </p>
       <p>
           <label>Etat de la réservation :</label>
           <select name="etat" id="etat" required>
-            <option>Effectif</option>
+            <%_ if(data[0].Etat == "Effectif") {_%>
+            <option selected >Effectif</option>
             <option>Annulée</option>
             <option>Terminée</option>
             <option>Supprimée</option>
+            <%_}_%>
+            <%_ if(data[0].Etat == "Annulée") {_%>
+            <option>Effectif</option>
+            <option selected >Annulée</option>
+            <option>Terminée</option>
+            <option>Supprimée</option>
+            <%_}_%>
+            <%_ if(data[0].Etat == "Terminée") {_%>
+            <option>Effectif</option>
+            <option>Annulée</option>
+            <option selected >Terminée</option>
+            <option>Supprimée</option>
+            <%_}_%>
+            <%_ if(data[0].Etat == "Supprimée") {_%>
+            <option>Effectif</option>
+            <option>Annulée</option>
+            <option>Terminée</option>
+            <option selected >Supprimée</option>
+            <%_}_%>
           </select>
       </p>
       <p>
@@ -49,7 +91,12 @@
           <select name="nReserv" id="nReserv">
           <option>-</option>
             <%_ allReserv.forEach(function(el){_%>
-                <option><%= el.ID %></option>
+                <%_ if(data[0].NouvelleReserv == el.ID) {_%>
+                <option selected> <%= el.ID %> </option>
+                <%_}_%>
+                <%_ if(data[0].NouvelleReserv != el.ID) {_%>
+                <option> <%= el.ID %> </option>
+                <%_}_%>
             <%_ }); _%>
           </select>
       </p>
