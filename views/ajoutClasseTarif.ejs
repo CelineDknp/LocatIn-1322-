@@ -22,7 +22,7 @@
       </p>
       <p>
           <label>Code du modèle :</label>
-          <select name="code" value="<%= data[0].CodeModele %>" id="code" required>
+          <select name="code" id="code" required>
             <%_ modele.forEach(function(el){_%>
                 <%_ if(data[0].CodeModele == el.Code) {_%>
                 <option selected> <%= el.Code %> </option>
@@ -35,7 +35,7 @@
       </p>
       <p>
           <label>Numéro du contrat :</label>
-          <select name="contrat" value="<%= data[0].Contrat %>" id="contrat" required>
+          <select name="contrat" id="contrat" required>
             <%_ contrat.forEach(function(el){_%>
                 <%_ if(data[0].Contrat == el.NumContrat) {_%>
                 <option selected> <%= el.NumContrat %> </option>
