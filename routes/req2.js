@@ -22,7 +22,7 @@ app.get('/', function(req, res) {
 	db.run(s0);
 	db.run(s1+s2+s3+s4+s5+s6+s7+s8+s9+s10);
 	db.run("END");
-	var s11 = "SELECT NFacture,	Nom, ID, Caution, FraisKMSupp, FraisRetard, Dedommagement, ";
+	var s11 = "SELECT NFacture,	Nom, ID, MontantForfait, Caution, FraisKMSupp, FraisRetard, Dedommagement, ";
 	var s12 = "MontantForfait + Caution + FraisKMSupp + FraisRetard - Dedommagement as 'Total' ";
 	var s13 = "FROM DetailFacture D, Client C, Facture F WHERE D.NCli=C.NClient and F.NReserv=D.ID";
 	var fullS = s11+s12+s13;

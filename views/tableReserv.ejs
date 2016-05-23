@@ -26,8 +26,18 @@
               <td><%=el.Date %></td>
               <td><%=el.Voiture %></td>
               <td><%=el.TypeLoc %></td>
+              <%_ if(el.DateSuppression == null || el.DateSuppression == "") {_%>
+              <td>-</td>
+              <%_}_%>
+              <%_ if(el.DateSuppression != null && el.DateSuppression != "") {_%>
               <td><%=el.DateSuppression %></td>
+              <%_}_%>
+              <%_ if(el.NouvelleReserv == null ) {_%>
+              <td>-</td>
+              <%_}_%>
+              <%_ if(el.NouvelleReserv != null) {_%>
               <td><%=el.NouvelleReserv %></td>
+              <%_}_%>
             </tr>
           <%_ }); _%>
         </tbody>

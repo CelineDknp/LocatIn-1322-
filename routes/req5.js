@@ -13,7 +13,7 @@ app.get('/', function(req, res) {
 	var s3 = "from Client where not exists (select * from Reservation R where Client.NClient=R.NClient) order by Nom";
 	db.all(s0+s1+s2+s3, function(err, row) {
 		res.render('req5', {
-			titre:'voitures',
+			titre:'fidelite',
 			data:row
 		});
 	});
