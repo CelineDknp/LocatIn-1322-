@@ -208,10 +208,6 @@ app.post('/contratLoc', function(req, res) {
 	db.run("BEGIN TRANSACTION");
 	db.run("INSERT OR IGNORE INTO ContratLoc (NReserv, NPermis, KMDepart, Caution) VALUES (?,?,?,?)", 
 												[reservF, permisF, kmF, cautionF]);
-    db.all("SELECT Voiture FROM Reservation WHERE ID="+reservF, function(err, voiture) {
-    	db.run("UPDATE Voiture SET Statut = ? WHERE NVoiture = ?", ["empruntée", voiture.Voiture]);
-    });
-    db.run("END");
     console.log("Contrat de location ajouté avec succès");
     res.redirect('/voirDB/contratLoc');
 });
@@ -234,16 +230,6 @@ app.post('/retour', function(req, res) {
 	db.run("BEGIN TRANSACTION");
 	db.run("INSERT OR IGNORE INTO Retour (NReserv, KMRetour, DateRetour, Reparation) VALUES (?,?,?,?)", 
 												[reservF, kmF, dateF, repF]);
-    
-    var statut = 'En réparation';
-    if(repF=='Non'){
-    	statut = 'libre';
-    }
-    db.all("SELECT Voiture FROM Reservation WHERE ID="+reservF, function(err, voiture) {
-    	db.run("UPDATE Voiture SET Statut = ? WHERE NVoiture = ?", [statut, voiture.Voiture]);
-    });
-    db.run("END");
-    //TODO : mettre voiture en "libre ou réparation"
     console.log("Bon de retour ajouté avec succès");
     res.redirect('/voirDB/retour');
 });
