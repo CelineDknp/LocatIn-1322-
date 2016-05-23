@@ -26,10 +26,15 @@
                 <option>semaine</option>
                 <option selected >weekEnd</option>
             <%_}_%>
+            <%_ if(data == "null") {_%>
+                <option> jour </option>
+                <option>semaine</option>
+                <option>weekEnd</option>
+            <%_}_%>
           </select>
       </p>
       <p>
-          <label>Kilomètres formaitaires :</label>
+          <label>Kilomètres forfaitaires :</label>
           <input type="number" value="<%= data[0].KMForfait %>" name="km" id="km" min=0 required>
       </p>
       <p>
