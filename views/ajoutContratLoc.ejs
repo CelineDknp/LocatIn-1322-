@@ -1,7 +1,12 @@
 <% include ./header %>
 <div class="container-fluid text-center">    
     <div class="col-sm-8 text-left"> 
+      <%_ if(data=="null") {_%>
       <h1>Nouveau contrat de location</h1>
+      <%_}_%>
+      <%_ if(data!="null") {_%>
+      <h1>Éditer contrat de location</h1>
+      <%_}_%>
       <form method="post" action="#" >
        <p>
           <label>Numéro de la réservation :</label>
@@ -13,11 +18,11 @@
       </p>
       <p>
           <label>Numéro de permis du client :</label>
-          <input type="text" name="permis" id="permis" required>
+          <input type="text" value="<%= data[0].NPermis %>" name="permis" id="permis" required>
       </p>
       <p>
           <label>Kilométrage au départ :</label>
-          <input type="number" name="km" id="km" min=0 required>
+          <input type="number" value="<%= data[0].KMDepart %>" name="km" id="km" min=0 required>
       </p>
       <p>
           <label>Caution :</label>
@@ -27,7 +32,7 @@
           </select>
       </p>
       <p>
-          <button type="submit" class="btn-new" name="val">Ajouter</button>
+          <button type="submit" class="btn-new" name="val"><%_ if(data=="null") {_%>Ajouter<%_}_%><%_ if(data!="null") {_%>Editer<%_}_%></button>
       </p>
   </form>
     </div>

@@ -5,6 +5,7 @@
       <h1>Table <%= table %></h1>
       <table>
         <thead>
+          <th></th>
           <th>Numéro de réservation</th>
           <th>Kilométrage à l'arrivée</th>
           <th>Date de retour</th>
@@ -13,6 +14,8 @@
         <tbody>
           <%_ data.forEach(function(el){_%>
             <tr>
+              <td><a href='supprimerRetour/<%=el.NReserv%>' title="Supprimer cette ligne"><img src="/images/supp.png" alt="suppression"></a>
+                <a href='editerRetour/<%=el.NReserv%>' title="Éditer cette ligne"><img src="/images/edit.png" alt="edition"></a></td>
               <td><%=el.NReserv %></td>
               <td><%=el.KMRetour %></td>
               <td><%=el.DateRetour %></td>

@@ -1,18 +1,28 @@
 <% include ./header %>
 <div class="container-fluid text-center">    
     <div class="col-sm-8 text-left"> 
+      <%_ if(data=="null") {_%>
       <h1>Nouvelle facture</h1>
+      <%_}_%>
+      <%_ if(data!="null") {_%>
+      <h1>Éditer facture</h1>
+      <%_}_%>
       <form method="post" action="#" >
        <p>
           <label>Numéro de la réservation :</label>
           <select name="reserv" id="reserv" required>
             <%_ reserv.forEach(function(el){_%>
-                <option><%= el.ID %></option>
+                <%_ if(data[0].NReserv == el.ID) {_%>
+                <option selected> <%= el.ID %> </option>
+                <%_}_%>
+                <%_ if(data[0].NReserv != el.ID) {_%>
+                <option> <%= el.ID %> </option>
+                <%_}_%>
             <%_ }); _%>
           </select>
       </p>
       <p>
-          <button type="submit" class="btn-new" name="val">Ajouter</button>
+          <button type="submit" class="btn-new" name="val"><%_ if(data=="null") {_%>Ajouter<%_}_%><%_ if(data!="null") {_%>Editer<%_}_%></button>
       </p>
   </form>
     </div>

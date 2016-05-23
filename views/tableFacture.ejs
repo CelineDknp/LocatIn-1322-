@@ -5,12 +5,16 @@
       <h1>Table <%= table %></h1>
       <table>
         <thead>
+          <th></th>
           <th>Numéro de facture</th>
           <th>Numéro de réservation</th>
         </thead>
         <tbody>
           <%_ data.forEach(function(el){_%>
             <tr>
+
+              <td><a href='supprimerFacture/<%=el.NFacture%>' title="Supprimer cette ligne"><img src="/images/supp.png" alt="suppression"></a>
+                <a href='editerFacture/<%=el.NFacture%>' title="Éditer cette ligne"><img src="/images/edit.png" alt="edition"></a></td>
               <td><%=el.NFacture %></td>
               <td><%=el.NReserv %></td>
             </tr>

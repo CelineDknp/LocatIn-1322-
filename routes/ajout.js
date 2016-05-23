@@ -187,7 +187,7 @@ app.post('/reservation', function(req, res) {
 												[clientF, "Effectif", dateF, voitureF, typeF, null, null]);
     db.run("END");
     console.log("Réservation ajoutée avec succès");
-    res.redirect('/');
+    res.redirect('/voirDB/reservation');
 });
 
 app.get('/contratLoc', function(req, res) {
@@ -213,7 +213,7 @@ app.post('/contratLoc', function(req, res) {
     });
     db.run("END");
     console.log("Contrat de location ajouté avec succès");
-    res.redirect('/');
+    res.redirect('/voirDB/contratLoc');
 });
 
 app.get('/retour', function(req, res) {
@@ -245,7 +245,7 @@ app.post('/retour', function(req, res) {
     db.run("END");
     //TODO : mettre voiture en "libre ou réparation"
     console.log("Bon de retour ajouté avec succès");
-    res.redirect('/');
+    res.redirect('/voirDB/retour');
 });
 
 app.get('/factures', function(req, res) {
@@ -264,7 +264,7 @@ app.post('/factures', function(req, res) {
 	db.run("INSERT OR IGNORE INTO Facture (NReserv) VALUES (?)", [reservF]);
     db.run("END");
     console.log("Facture ajoutée avec succès");
-    res.redirect('/');
+    res.redirect('/voirDB/factures');
 });
 
 module.exports = app;

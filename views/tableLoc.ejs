@@ -14,8 +14,8 @@
         <tbody>
           <%_ data.forEach(function(el){_%>
             <tr>
-              <td><a href='supprimerModele/<%=el.Nom%>,<%=el.Adresse%>' title="Supprimer cette ligne"><img src="/images/supp.png" alt="suppression"></a>
-                <a href='editerModele/<%=el.Nom%>,<%=el.Adresse%>' title="Éditer cette ligne"><img src="/images/edit.png" alt="edition"></a></td>
+              <td><a href='supprimerContratLoc/<%=el.NReserv%>' title="Supprimer cette ligne"><img src="/images/supp.png" alt="suppression"></a>
+                <a href='editerContratLoc/<%=el.NReserv%>' title="Éditer cette ligne"><img src="/images/edit.png" alt="edition"></a></td>
               <td><%=el.NReserv %></td>
               <td><%=el.NPermis %></td>
               <td><%=el.KMDepart %></td>

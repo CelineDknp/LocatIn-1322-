@@ -414,6 +414,41 @@ app.get('/contratLoc', function(req, res) {
 		});
 });
 
+app.get('/supprimerContratLoc/:id', function(req, res) {
+	var condition = req.params.id;
+
+	db.run("BEGIN TRANSACTION");
+	db.run("DELETE FROM contratLoc WHERE NReserv = ?", [condition]);
+	db.run("END");
+
+	res.redirect("/voirDB/contratLoc");
+		  	
+});
+
+app.get('/editerContratLoc/:id', function(req, res) {
+	var condition = req.params.id;
+
+	db.all("SELECT * FROM contratLoc WHERE NReserv = '"+condition+"'", function(err, row) {
+		db.all("SELECT ID FROM Reservation", function(err, row2) {
+			res.render('ajoutContratLoc', {
+				titre:'ajout',
+				reserv:row2,
+				data:row
+	   		});
+		});
+	});
+});
+
+app.post('/editerContratLoc/:id', function(req, res) {
+	var condition = req.params.id;
+	db.run("BEGIN TRANSACTION");
+	db.run("UPDATE contratLoc SET NReserv = "+req.body.reserv+ " , NPermis = '"+req.body.permis+
+								"' , KMDepart = '"+req.body.km+"' , Caution = '"+req.body.caution+
+								"' WHERE NReserv = "+condition);
+	db.run("END");
+	res.redirect("/voirDB/contratLoc");
+});
+
 app.get('/retour', function(req, res) {
 		db.all("SELECT * FROM retour", function(err, row) {	
 			res.render('tableRetour', {
@@ -424,6 +459,41 @@ app.get('/retour', function(req, res) {
 		});
 });
 
+app.get('/supprimerRetour/:id', function(req, res) {
+	var condition = req.params.id;
+
+	db.run("BEGIN TRANSACTION");
+	db.run("DELETE FROM retour WHERE NReserv = ?", [condition]);
+	db.run("END");
+
+	res.redirect("/voirDB/retour");
+		  	
+});
+
+app.get('/editerRetour/:id', function(req, res) {
+	var condition = req.params.id;
+
+	db.all("SELECT * FROM retour WHERE NReserv = '"+condition+"'", function(err, row) {
+		db.all("SELECT ID FROM Reservation", function(err, row2) {
+			res.render('ajoutRetour', {
+			titre:'ajout',
+			reserv:row2,
+			data:row
+	   		});
+		});
+	});
+});
+
+app.post('/editerRetour/:id', function(req, res) {
+	var condition = req.params.id;
+	db.run("BEGIN TRANSACTION");
+	db.run("UPDATE retour SET NReserv = "+req.body.reserv+ " , DateRetour = '"+req.body.date+
+								"' , KMRetour = '"+req.body.km+"' , Reparation = '"+req.body.rep+
+								"' WHERE NReserv = "+condition);
+	db.run("END");
+	res.redirect("/voirDB/retour");
+});
+
 app.get('/factures', function(req, res) {
 		db.all("SELECT * FROM facture", function(err, row) {	
 			res.render('tableFacture', {
@@ -432,6 +502,39 @@ app.get('/factures', function(req, res) {
 	    		data:row
 	    	})
 		});
+});
+
+app.get('/supprimerFacture/:id', function(req, res) {
+	var condition = req.params.id;
+
+	db.run("BEGIN TRANSACTION");
+	db.run("DELETE FROM Facture WHERE NFacture = ?", [condition]);
+	db.run("END");
+
+	res.redirect("/voirDB/factures");
+		  	
+});
+
+app.get('/editerFacture/:id', function(req, res) {
+	var condition = req.params.id;
+
+	db.all("SELECT * FROM facture WHERE NFacture = '"+condition+"'", function(err, row) {
+		db.all("SELECT ID FROM Reservation", function(err, row2) {
+			res.render('ajoutFacture', {
+			titre:'ajout',
+			reserv:row2,
+			data:row
+	   		});
+		});
+	});
+});
+
+app.post('/editerFacture/:id', function(req, res) {
+	var condition = req.params.id;
+	db.run("BEGIN TRANSACTION");
+	db.run("UPDATE facture SET NReserv = "+req.body.reserv+" WHERE NFacture = "+condition);
+	db.run("END");
+	res.redirect("/voirDB/factures");
 });
 
 module.exports = app;
