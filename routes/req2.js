@@ -21,17 +21,30 @@ app.get('/', function(req, res) {
 	db.run("BEGIN TRANSACTION");
 	db.run(s0);
 	db.run(s1+s2+s3+s4+s5+s6+s7+s8+s9+s10);
-	db.run("END");
 	var s11 = "SELECT NFacture,	Nom, ID, MontantForfait, Caution, FraisKMSupp, FraisRetard, Dedommagement, ";
 	var s12 = "MontantForfait + Caution + FraisKMSupp + FraisRetard - Dedommagement as 'Total' ";
 	var s13 = "FROM DetailFacture D, Client C, Facture F WHERE D.NCli=C.NClient and F.NReserv=D.ID";
 	var fullS = s11+s12+s13;
 	db.all(fullS, function(err, row) {
-		res.render('req2', {
-			titre:'factures',
-			data:row
-		});
+		if(row == undefined){
+			db.run(s1+s2+s3+s4+s5+s6+s7+s8+s9+s10);
+			db.all(fullS, function(err, row2) {
+				res.render('req2', {
+					titre:'factures',
+					data:row2
+				});
+			});
+		}
+		else{
+			res.render('req2', {
+				titre:'factures',
+				data:row
+			});
+		}
 	});
+
+	//db.run(s0);
+	db.run("END");
 });
 
 module.exports =app;
