@@ -15,15 +15,15 @@ app.get('/', function(req, res) {
 	var s5 = "when (DateRetour-Date)>2.45 and TypeLoc='weekEnd' then  (DateRetour-Date-2.45)*AmendeJour ";
 	var s6 = "when (DateRetour-Date)>1 and TypeLoc='jour' then  (DateRetour-Date-1)*AmendeJour else 0 end as 'FraisRetard', ";
 	var s7 = "Case when exists (select ID from Reservation R where R.ID=R.NouvelleReserv) then AmendeJour else 0 end as 'Dedommagement' ";
-	var s8 = "FROM ContratLoc C, Retour R, Facture F, Reservation Res, FormLoc L, ClasseTarif T, Voiture V ";
-	var s9 = "where C.NReserv=R.NReserv and R.NReserv=F.NReserv and Res.ID=F.Nreserv and Res.TypeLoc=L.type and ";
+	var s8 = "FROM ContratLoc C, Retour R, Reservation Res, FormLoc L, ClasseTarif T, Voiture V ";
+	var s9 = "where C.NReserv=R.NReserv and R.NReserv=Res.ID and Res.TypeLoc=L.type and ";
 	var s10 = "Res.Voiture=V.NVoiture and V.CodeModele=T.CodeModele and T.Code=L.CodeTarif ";
 	db.run("BEGIN TRANSACTION");
 	db.run(s0);
 	db.run(s1+s2+s3+s4+s5+s6+s7+s8+s9+s10);
-	var s11 = "SELECT NFacture,	Nom, ID, MontantForfait, Caution, FraisKMSupp, FraisRetard, Dedommagement, ";
+	var s11 = "SELECT NClient, Nom, ID, MontantForfait, Caution, FraisKMSupp, FraisRetard, Dedommagement, ";
 	var s12 = "MontantForfait + Caution + FraisKMSupp + FraisRetard - Dedommagement as 'Total' ";
-	var s13 = "FROM DetailFacture D, Client C, Facture F WHERE D.NCli=C.NClient and F.NReserv=D.ID";
+	var s13 = "FROM DetailFacture D, Client C WHERE D.NCli=C.NClient";
 	var fullS = s11+s12+s13;
 	db.all(fullS, function(err, row) {
 		if(row == undefined){
@@ -42,8 +42,6 @@ app.get('/', function(req, res) {
 			});
 		}
 	});
-
-	//db.run(s0);
 	db.run("END");
 });
 

@@ -5,7 +5,7 @@
       <h1>Détail des factures</h1>
       <table>
         <thead>
-          <th>Numéro de facture</th>
+          <th>Numéro de client</th>
           <th>Nom du client</th>
           <th>Numéro de réservation</th>
           <th>Caution</th>
@@ -18,7 +18,7 @@
         <tbody>
           <%_ data.forEach(function(el){_%>
             <tr>
-              <td><%=el.NFacture %></td>
+              <td><%=el.NClient %></td>
               <td><%=el.Nom %></td>
               <td><%=el.ID %></td>
               <td><%=el.Caution %>€</td>
