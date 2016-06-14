@@ -230,24 +230,5 @@ app.post('/retour', function(req, res) {
     console.log("Bon de retour ajouté avec succès");
     res.redirect('/voirDB/retour');
 });
-/*
-app.get('/factures', function(req, res) {
-	db.all("SELECT ID FROM Reservation", function(err, row) {
-		res.render('ajoutFacture', {
-			titre:'ajout',
-			reserv:row,
-			data:"null"
-	   	});
-	});
-});
-
-app.post('/factures', function(req, res) {
-	var reservF = req.body.reserv;
-	db.run("BEGIN TRANSACTION");
-	db.run("INSERT OR IGNORE INTO Facture (NReserv) VALUES (?)", [reservF]);
-    db.run("END");
-    console.log("Facture ajoutée avec succès");
-    res.redirect('/voirDB/factures');
-});*/
 
 module.exports = app;

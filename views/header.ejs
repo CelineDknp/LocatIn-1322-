@@ -40,7 +40,6 @@
                         <li><a href="/voirDB/reservation">Réservations</a></li>
                         <li><a href="/voirDB/contratLoc">Contrats de location</a></li>
                         <li><a href="/voirDB/retour">Bons de retour</a></li>
-                        <!--<li><a href="/voirDB/factures">Factures</a></li>-->
                     </ul>
                 </li>
         <li id="li2" <%_ if(titre=='ajout') {_%> class='active' <%_}_%>>
@@ -58,20 +57,14 @@
                         <li><a href="/ajoutDB/reservation">Nouvelle réservation</a></li>
                         <li><a href="/ajoutDB/contratLoc">Nouveau contrat de location</a></li>
                         <li><a href="/ajoutDB/retour">Nouveau bons de retour</a></li>
-                        <!--<li><a href="/ajoutDB/factures">Nouvelle facture</a></li>-->
                     </ul>
                 </li>
-        <li <%_ if(titre=='contrat') {_%> class='active' <%_}_%>><a href="/contratModele">Contrats des assureurs</a></li>
+        <li <%_ if(titre=='recherche') {_%> class='active' <%_}_%>><a href="/rechercheVoitures">Recherche voiture disponible</a></li>
         <li <%_ if(titre=='factures') {_%> class='active' <%_}_%>><a href="/factures">Détail des factures</a></li>
         <li <%_ if(titre=='dedommagement') {_%> class='active' <%_}_%>><a href="/dedommagement">Remboursements</a></li>
         <li <%_ if(titre=='voitures') {_%> class='active' <%_}_%>><a href="/voitures">Détail des voitures</a></li>
         <li <%_ if(titre=='fidelite') {_%> class='active' <%_}_%>><a href="/fidelite">Fidélité des clients</a></li>
-        <li <%_ if(titre=='recherche') {_%> class='active' <%_}_%>><a href="/rechercheVoitures">Recherche voiture disponible</a></li>
       </ul>
-      <!--
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="/"><span class="glyphicon glyphicon-log-in"></span>Se connecter</a></li>
-      </ul>-->
     </div>
   </div>
 </nav>

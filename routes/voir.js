@@ -487,48 +487,5 @@ app.post('/editerRetour/:id', function(req, res) {
 	db.run("END");
 	res.redirect("/voirDB/retour");
 });
-/*
-app.get('/factures', function(req, res) {
-		db.all("SELECT * FROM facture", function(err, row) {	
-			res.render('tableFacture', {
-	    		titre:'voir',
-	    		table:"factures",
-	    		data:row
-	    	})
-		});
-});
-
-app.get('/supprimerFacture/:id', function(req, res) {
-	var condition = req.params.id;
-
-	db.run("BEGIN TRANSACTION");
-	db.run("DELETE FROM Facture WHERE NFacture = ?", [condition]);
-	db.run("END");
-
-	res.redirect("/voirDB/factures");
-		  	
-});
-
-app.get('/editerFacture/:id', function(req, res) {
-	var condition = req.params.id;
-
-	db.all("SELECT * FROM facture WHERE NFacture = '"+condition+"'", function(err, row) {
-		db.all("SELECT ID FROM Reservation", function(err, row2) {
-			res.render('ajoutFacture', {
-			titre:'voir',
-			reserv:row2,
-			data:row
-	   		});
-		});
-	});
-});
-
-app.post('/editerFacture/:id', function(req, res) {
-	var condition = req.params.id;
-	db.run("BEGIN TRANSACTION");
-	db.run("UPDATE facture SET NReserv = "+req.body.reserv+" WHERE NFacture = "+condition);
-	db.run("END");
-	res.redirect("/voirDB/factures");
-});*/
 
 module.exports = app;
