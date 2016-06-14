@@ -1,0 +1,37 @@
+<% include ./header %>
+<div class="container">
+    <div class="center-template">    
+    <h1>Résultat de la recherche</h1>
+    <%_ if(data[0]==null) {_%>
+    <p>Désolé, votre recherche n'a donné aucun résultat ! Vous pouvez cependant <a href="/rechercheVoitures">réessayer</a> avec d'autres valeurs</p>
+    <%_}_%>
+    <%_ if(data[0]!=null) {_%>
+          <table>
+            <thead>
+              <th>Numéro de voiture</th>
+              <th>Libelle</th>
+              <th>Marque</th>
+              <th>Modele</th>
+              <th>Prix indicatif de la réservation</th>
+              <th></th>
+            </thead>
+            <tbody>
+              <%_ data.forEach(function(el){_%>
+                <tr>
+                  <td><%=el.NVoiture %></td>
+                  <td><%=el.Libelle %></td>
+                  <td><%=el.Marque %></td>
+                  <td><%=el.Type %></td>
+                  <td><%=el.MontantForfait %>€</td>
+                  <td><a href="/rechercheVoitures/<%=el.NVoiture%>,<%=dateL%>,<%=typeL%>,<%=nClient%>">Réserver cette voiture</a></td>
+                </tr>
+              <%_ }); _%>
+            </tbody>
+          </table>
+      <p>Pas satisfait(e) de ces offres ? Vous pouvez toujours <a href="/rechercheVoitures">faire une autre demande</a> </p>
+    <%_}_%>
+    <hr>
+  </div>
+</div>
+
+<% include ./footer %>

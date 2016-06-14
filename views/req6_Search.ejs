@@ -1,0 +1,58 @@
+<% include ./header %>
+
+<div class="container">
+    <div class="center-template">    
+      <h1>Recherche de voiture disponible</h1>
+      <form method="post" action="#">
+      <p>
+          <label>Numéro du client :</label>
+          <input type="number" name="numero" id="numero" required min=1>
+      </p>
+
+      <p>
+          <label>Date du début de la réservation :</label>
+          <input type="text" name="date" id="date" required placeholder="JJ-MM-AAAA">
+      </p>
+      <p>
+          <label>Durée de la location :</label>
+          <select name="typeLoc" id="typeLoc" required>
+            <%_ loc.forEach(function(el){_%>
+                <option> <%= el.Type %> </option>
+            <%_ }); _%>
+          </select>
+      </p>
+      <p>
+          <label>Option souhaitées :</label>
+          <select name="libelle" id="libelle">
+          <option></option>
+            <%_ modele.forEach(function(el){_%>
+                <option> <%= el.Libelle %> </option>
+            <%_ }); _%>
+          </select>
+      </p>
+      <p>
+          <label>Marque :</label>
+          <select name="marque" id="marque">
+          <option></option>
+            <%_ modele.forEach(function(el){_%>
+                <option> <%= el.Marque %> </option>
+            <%_ }); _%>
+          </select>
+      </p>
+      <p>
+          <label>Modèle :</label>
+          <select name="modele" id="modele">
+          <option></option>
+            <%_ modele.forEach(function(el){_%>
+                <option> <%= el.Type %> </option>
+            <%_ }); _%>
+          </select>
+      </p>
+      
+      <p>
+          <button type="submit" class="btn-new" name="val">Rechercher</button>
+      </p>
+      </form>
+
+      
+<% include ./footer %>

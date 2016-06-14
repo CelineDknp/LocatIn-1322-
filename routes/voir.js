@@ -6,12 +6,6 @@ var sqlite3 = require("sqlite3").verbose();
 var file = "LINGE1322.sqlite";
 var db = new sqlite3.Database(file);
 
-app.get('/', function(req, res) {	
-			res.render('voir', {
-	    		titre:'voir',
-	    	}) 	
-});
-
 app.get('/assureur', function(req, res) {
 		db.all("SELECT * FROM Assureur", function(err, row) {	
 			res.render('tableAssur', {
@@ -493,7 +487,7 @@ app.post('/editerRetour/:id', function(req, res) {
 	db.run("END");
 	res.redirect("/voirDB/retour");
 });
-
+/*
 app.get('/factures', function(req, res) {
 		db.all("SELECT * FROM facture", function(err, row) {	
 			res.render('tableFacture', {
@@ -535,6 +529,6 @@ app.post('/editerFacture/:id', function(req, res) {
 	db.run("UPDATE facture SET NReserv = "+req.body.reserv+" WHERE NFacture = "+condition);
 	db.run("END");
 	res.redirect("/voirDB/factures");
-});
+});*/
 
 module.exports = app;

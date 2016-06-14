@@ -9,14 +9,14 @@ var db = new sqlite3.Database(file);
 app.get('/', function(req, res) {
 	var s0 = "DROP TABLE IF EXISTS 'DetailFacture'; ";
 	var s1 = "CREATE TABLE IF NOT EXISTS DetailFacture as SELECT NClient as 'NCli', ID, MontantForfait, ";
-	var s2 = "Case when Caution='Payée' then 0 when Caution='Non payée' then (MontantForfait/100)*3 else 0 end as 'Caution', ";
+	var s2 = "Case when Caution='Payée' then -((MontantForfait/100)*20) else (MontantForfait/100)*3 end as 'Caution', ";
 	var s3 = "Case when (KMRetour-KMDepart) >KMForfait then (KMRetour-KMDepart-KMForfait)*PrixKM else 0 end as 'FraisKMSupp', ";
 	var s4 = "Case when (DateRetour-Date)>7 and TypeLoc='semaine' then  (DateRetour-Date-7)*AmendeJour ";
 	var s5 = "when (DateRetour-Date)>2.45 and TypeLoc='weekEnd' then  (DateRetour-Date-2.45)*AmendeJour ";
 	var s6 = "when (DateRetour-Date)>1 and TypeLoc='jour' then  (DateRetour-Date-1)*AmendeJour else 0 end as 'FraisRetard', ";
-	var s7 = "Case when exists (select ID from Reservation R where R.ID=R.NouvelleReserv) then AmendeJour else 0 end as 'Dedommagement' ";
+	var s7 = "Case when exists (select ID from Reservation R where Res.ID=R.NouvelleReserv) then AmendeJour else 0 end as 'Dedommagement' ";
 	var s8 = "FROM ContratLoc C, Retour R, Reservation Res, FormLoc L, ClasseTarif T, Voiture V ";
-	var s9 = "where C.NReserv=R.NReserv and R.NReserv=Res.ID and Res.TypeLoc=L.type and ";
+	var s9 = "where C.NReserv=R.NReserv and R.NReserv=Res.ID and Res.TypeLoc=L.type and Res.Etat='Terminée' and ";
 	var s10 = "Res.Voiture=V.NVoiture and V.CodeModele=T.CodeModele and T.Code=L.CodeTarif ";
 	db.run("BEGIN TRANSACTION");
 	db.run(s0);

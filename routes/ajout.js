@@ -202,6 +202,7 @@ app.post('/contratLoc', function(req, res) {
 	db.run("BEGIN TRANSACTION");
 	db.run("INSERT OR IGNORE INTO ContratLoc (NReserv, NPermis, KMDepart, Caution) VALUES (?,?,?,?)", 
 												[reservF, permisF, kmF, cautionF]);
+	db.run("END TRANSACTION");
     console.log("Contrat de location ajouté avec succès");
     res.redirect('/voirDB/contratLoc');
 });
@@ -229,7 +230,7 @@ app.post('/retour', function(req, res) {
     console.log("Bon de retour ajouté avec succès");
     res.redirect('/voirDB/retour');
 });
-
+/*
 app.get('/factures', function(req, res) {
 	db.all("SELECT ID FROM Reservation", function(err, row) {
 		res.render('ajoutFacture', {
@@ -247,6 +248,6 @@ app.post('/factures', function(req, res) {
     db.run("END");
     console.log("Facture ajoutée avec succès");
     res.redirect('/voirDB/factures');
-});
+});*/
 
 module.exports = app;
